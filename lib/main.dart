@@ -16,6 +16,4 @@ void main() {
               '/': (context) => const HomePage(),
             },
           )));
-
-  runApp();
 }
