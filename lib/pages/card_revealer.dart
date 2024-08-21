@@ -11,7 +11,7 @@ class CardRevealer extends StatefulWidget {
 }
 
 class _CardRevealerState extends State<CardRevealer> {
-  late MyCard card;
+  final selectedCard = MagicCard();
   bool isCardSelected = true;
 
   @override
@@ -20,7 +20,8 @@ class _CardRevealerState extends State<CardRevealer> {
       backgroundColor: Colors.black,
       body: isCardSelected
           ? Center(
-              child: PlayingCardView(card: PlayingCard(card.suit, card.value)),
+              child: PlayingCardView(
+                  card: PlayingCard(Suit.diamonds, CardValue.jack)),
             )
           : Container(),
     );

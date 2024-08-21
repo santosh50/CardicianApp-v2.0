@@ -43,7 +43,7 @@ class _PredictionState extends State<Prediction> {
     addCount = temp - (temp ~/ 4);
 
     //Determine Hidden Card
-    final MyCard keyCard = cards[0];
+    final MagicCard keyCard = cards[0];
     final Suit hiddenSuit = keyCard.suit;
     int position = valList.indexOf(keyCard.value);
     position = (position + addCount) % 13;

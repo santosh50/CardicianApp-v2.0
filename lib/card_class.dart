@@ -1,12 +1,9 @@
 import 'package:playing_cards/playing_cards.dart';
 
-class MyCard {
+class MagicCard {
   Suit suit = Suit.joker;
   CardValue value = CardValue.joker_1;
   bool showBack = true;
-
-  //Constructor to initialize card parameters
-  MyCard(this.suit, this.value, this.showBack);
 }
 
 final Map valueMap = {
