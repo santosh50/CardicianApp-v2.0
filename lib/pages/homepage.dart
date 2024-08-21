@@ -43,7 +43,9 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/reveal');
+                },
                 style: const ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(Colors.green),
                     padding: WidgetStatePropertyAll(
