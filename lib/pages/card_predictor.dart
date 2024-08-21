@@ -127,7 +127,7 @@ class _CardPredictorState extends State<CardPredictor> {
                 4,
                 (id) => InkWell(
                   onTap: () {
-                    selectCard(id);
+                    // selectCard(id);
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),

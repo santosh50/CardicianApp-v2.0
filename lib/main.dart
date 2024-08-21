@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:cardician_app_v2/pages/homepage.dart';
 import 'package:cardician_app_v2/pages/card_predictor.dart';
+import 'package:cardician_app_v2/pages/prediction_page.dart';
 
 void main() {
   //Ensure app is initialized before locking device orientation
@@ -16,6 +17,7 @@ void main() {
             routes: {
               '/': (context) => const HomePage(),
               '/predict': (context) => const CardPredictor(),
+              '/prediction': (context) => const Prediction(),
             },
           )));
 }
