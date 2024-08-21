@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:cardician_app_v2/pages/homepage.dart';
+import 'package:cardician_app_v2/pages/card_predictor.dart';
 
 void main() {
   //Ensure app is initialized before locking device orientation
@@ -11,9 +12,10 @@ void main() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(MaterialApp(
             title: 'Cardician',
-            initialRoute: '/',
+            initialRoute: '/predict',
             routes: {
               '/': (context) => const HomePage(),
+              '/predict': (context) => const CardPredictor(),
             },
           )));
 }

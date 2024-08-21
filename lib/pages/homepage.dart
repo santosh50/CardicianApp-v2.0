@@ -71,7 +71,9 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/predict');
+                },
                 style: const ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(Colors.purple),
                     padding: WidgetStatePropertyAll(
