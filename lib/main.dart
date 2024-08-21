@@ -5,6 +5,7 @@ import 'package:cardician_app_v2/pages/homepage.dart';
 import 'package:cardician_app_v2/pages/card_predictor.dart';
 import 'package:cardician_app_v2/pages/prediction_page.dart';
 import 'package:cardician_app_v2/pages/card_revealer.dart';
+import 'package:cardician_app_v2/pages/card_swapper.dart';
 
 void main() {
   //Ensure app is initialized before locking device orientation
@@ -20,6 +21,7 @@ void main() {
               '/predict': (context) => const CardPredictor(),
               '/prediction': (context) => const Prediction(),
               '/reveal': (context) => const CardRevealer(),
+              '/swap': (context) => const CardSwapper(),
             },
           )));
 }
