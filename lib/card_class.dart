@@ -1,5 +1,4 @@
 import 'package:playing_cards/playing_cards.dart';
-import 'package:flutter/material.dart';
 
 class MagicCard {
   Suit suit = Suit.joker;
