@@ -77,11 +77,11 @@ class _CardRevealerState extends State<CardRevealer> {
       backgroundColor: Colors.black,
       body: Scratcher(
         brushSize: 70,
-        // onScratchStart: () {
-        //   setState(() {
-        //     isCardSelected = true;
-        //   });
-        // },
+        onScratchUpdate: () {
+          setState(() {
+            isCardSelected = true;
+          });
+        },
         child: isCardSelected
             ? Center(
                 child: PlayingCardView(
@@ -96,9 +96,6 @@ class _CardRevealerState extends State<CardRevealer> {
                     (index) => GestureDetector(
                           onTapDown: (details) {
                             selectCard(index);
-                            setState(() {
-                              isCardSelected = true;
-                            });
                           },
                           child: Container(
                             color: Colors.primaries[
@@ -107,34 +104,5 @@ class _CardRevealerState extends State<CardRevealer> {
                         ))),
       ),
     );
-
-    // return Scaffold(
-    //     backgroundColor: Colors.black,
-    //     body: Scratch(er(
-    //       onScratchStart: () {
-    //         setState(() {
-    //           isCardSelected = true;
-    //         });
-    //       },
-    //       brushSize: 70,
-    //       child: isCardSelected
-    //           ? Center(
-    //               child: PlayingCardView(card: PlayingCard(s, v)),
-    //             )
-    //           : GridView.count(
-    //               crossAxisCount: 3,
-    //               childAspectRatio: size.width / (size.height / 1.4),
-    //               physics: const NeverScrollableScrollPhysics(),
-    //               children: List.generate(
-    //                   12,
-    //                   (index) => GestureDetector(
-    //                         onTapDown:
-    //                         },
-    //                         child: Container(
-    //                           color: Colors.primaries[
-    //                               Random().nextInt(Colors.primaries.length)],
-    //                         ),
-    //                       ))),
-    //     ));
   }
 }
