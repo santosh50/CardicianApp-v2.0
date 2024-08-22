@@ -77,15 +77,16 @@ class _CardRevealerState extends State<CardRevealer> {
       backgroundColor: Colors.black,
       body: Scratcher(
         brushSize: 70,
-        onScratchUpdate: () {
-          setState(() {
-            isCardSelected = true;
-          });
-        },
+        onScratchUpdate: () => setState(() {
+          isCardSelected = true;
+        }),
         child: isCardSelected
             ? Center(
-                child: PlayingCardView(
-                    card: PlayingCard(myCard.suit, myCard.value)),
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 15),
+                  child: PlayingCardView(
+                      card: PlayingCard(myCard.suit, myCard.value)),
+                ),
               )
             : GridView.count(
                 crossAxisCount: 3,
