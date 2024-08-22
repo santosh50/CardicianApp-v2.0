@@ -59,7 +59,9 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/swap');
+                },
                 style: const ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(Colors.orange),
                     padding: WidgetStatePropertyAll(
