@@ -52,24 +52,24 @@ class _CardSwapperState extends State<CardSwapper> {
   //   //   ),
   //   // ),
 
-  //   // showDialog(
-  //   //   context: context,
-  //   //   builder: (context) => Dialog(
-  //   //     child: GridView.count(
-  //   //       crossAxisCount: 2,
-  //   //       shrinkWrap: true,
-  //   //       physics: const NeverScrollableScrollPhysics(),
-  //   //       children: List.generate(
-  //   //         4,
-  //   //         (index) => IconButton(
-  //   //             onPressed: () {
-  //   //               inputSuit = suitList[index];
-  //   //             },
-  //   //             icon: Image.asset('images/${suitMap[suitList[index]]}.png')),
-  //   //       ),
-  //   //     ),
-  //   //   ),
-  //   // );
+  // showDialog(
+  //   context: context,
+  //   builder: (context) => Dialog(
+  //     child: GridView.count(
+  //       crossAxisCount: 2,
+  //       shrinkWrap: true,
+  //       physics: const NeverScrollableScrollPhysics(),
+  //       children: List.generate(
+  //         4,
+  //         (index) => IconButton(
+  //             onPressed: () {
+  //               inputSuit = suitList[index];
+  //             },
+  //             icon: Image.asset('images/${suitMap[suitList[index]]}.png')),
+  //       ),
+  //     ),
+  //   ),
+  // );
   // }
 
   @override
@@ -79,7 +79,8 @@ class _CardSwapperState extends State<CardSwapper> {
       backgroundColor: Colors.black,
       body: GestureDetector(
         onTap: () {
-          inputValue(context);
+          // inputValue(context);
+          inputSuit(context);
         },
         child: Center(
           child: PlayingCardView(card: PlayingCard(card1.suit, card1.value)),

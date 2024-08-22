@@ -65,10 +65,29 @@ CardValue inputValue(BuildContext context) {
   return inputValue;
 }
 
-// Suit inputSuit(BuildContext context) {
-//   Suit inputSuit = Suit.joker;
+Suit inputSuit(BuildContext context) {
+  Suit inputSuit = Suit.joker;
 
+  showDialog(
+    context: context,
+    builder: (context) => Dialog(
+      child: GridView.count(
+        crossAxisCount: 2,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        children: List.generate(
+          4,
+          (index) => IconButton(
+            icon: const Icon(Icons.man),
+            onPressed: () {
+              inputSuit = suitList[index];
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
+      ),
+    ),
+  );
 
-
-//   return inputSuit;
-// }
+  return inputSuit;
+}
