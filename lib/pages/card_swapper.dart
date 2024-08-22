@@ -16,7 +16,61 @@ class _CardSwapperState extends State<CardSwapper> {
   final card1 = MagicCard();
   final card2 = MagicCard();
 
-  bool isSuitSelected = false;
+  void enterCard(MagicCard card) {
+    CardValue inputValue = CardValue.joker_1;
+    Suit inputSuit = Suit.joker;
+
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        child: GridView.count(
+          crossAxisCount: 4,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          children: List.generate(
+              13,
+              (index) => TextButton(
+                    child: Text(
+                      '${valueMap[valList[index]]}',
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 36,
+                          fontFamily: 'Georgia'),
+                    ),
+                    onPressed: () {
+                      inputValue = valList[index];
+                      Navigator.of(context).pop();
+                      showDialog(
+                        context: context,
+                        builder: (context) => Dialog(
+                          child: GridView.count(
+                            crossAxisCount: 2,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            children: List.generate(
+                              4,
+                              (index) => IconButton(
+                                icon: Image.asset(
+                                    'images/${suitMap[suitList[index]]}.png'),
+                                onPressed: () {
+                                  inputSuit = suitList[index];
+                                  Navigator.of(context).pop();
+                                  setState(() {
+                                    card.value = inputValue;
+                                    card.suit = inputSuit;
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  )),
+        ),
+      ),
+    );
+  }
 
   // void inputCard(MagicCard card) {
   //   Suit inputSuit;
@@ -74,16 +128,15 @@ class _CardSwapperState extends State<CardSwapper> {
 
   @override
   Widget build(BuildContext context) {
-    card1.suit = Suit.hearts;
     return Scaffold(
       backgroundColor: Colors.black,
       body: GestureDetector(
         onTap: () {
-          // inputValue(context);
-          inputSuit(context);
+          enterCard(card2);
+          enterCard(card1);
         },
         child: Center(
-          child: PlayingCardView(card: PlayingCard(card1.suit, card1.value)),
+          child: PlayingCardView(card: PlayingCard(card2.suit, card2.value)),
         ),
       ),
     );

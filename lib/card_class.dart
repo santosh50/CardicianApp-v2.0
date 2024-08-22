@@ -33,8 +33,36 @@ final Map<Suit, String> suitMap = {
 final valList = valueMap.keys.toList();
 final suitList = suitMap.keys.toList();
 
-CardValue inputValue(BuildContext context) {
+Suit inputSuit(BuildContext context) {
+  Suit inputSuit = Suit.joker;
+
+  showDialog(
+    context: context,
+    builder: (context) => Dialog(
+      child: GridView.count(
+        crossAxisCount: 2,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        children: List.generate(
+          4,
+          (index) => IconButton(
+            icon: Image.asset('images/${suitMap[suitList[index]]}.png'),
+            onPressed: () {
+              inputSuit = suitList[index];
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
+      ),
+    ),
+  );
+
+  return inputSuit;
+}
+
+void inputCard(MagicCard card, BuildContext context) {
   CardValue inputValue = CardValue.joker_1;
+  Suit inputSuit = Suit.joker;
 
   showDialog(
     context: context,
@@ -56,38 +84,30 @@ CardValue inputValue(BuildContext context) {
                   onPressed: () {
                     inputValue = valList[index];
                     Navigator.of(context).pop();
+                    showDialog(
+                      context: context,
+                      builder: (context) => Dialog(
+                        child: GridView.count(
+                          crossAxisCount: 2,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: List.generate(
+                            4,
+                            (index) => IconButton(
+                              icon: Image.asset(
+                                  'images/${suitMap[suitList[index]]}.png'),
+                              onPressed: () {
+                                inputSuit = suitList[index];
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
                   },
                 )),
       ),
     ),
   );
-
-  return inputValue;
-}
-
-Suit inputSuit(BuildContext context) {
-  Suit inputSuit = Suit.joker;
-
-  showDialog(
-    context: context,
-    builder: (context) => Dialog(
-      child: GridView.count(
-        crossAxisCount: 2,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        children: List.generate(
-          4,
-          (index) => IconButton(
-            icon: const Icon(Icons.man),
-            onPressed: () {
-              inputSuit = suitList[index];
-              Navigator.of(context).pop();
-            },
-          ),
-        ),
-      ),
-    ),
-  );
-
-  return inputSuit;
 }
