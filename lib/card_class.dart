@@ -1,4 +1,5 @@
 import 'package:playing_cards/playing_cards.dart';
+import 'package:flutter/material.dart';
 
 class MagicCard {
   Suit suit = Suit.joker;
@@ -6,7 +7,7 @@ class MagicCard {
   bool showBack = true;
 }
 
-final Map valueMap = {
+final Map<CardValue, String> valueMap = {
   CardValue.ace: 'A',
   CardValue.two: '2',
   CardValue.three: '3',
@@ -22,12 +23,52 @@ final Map valueMap = {
   CardValue.king: 'K'
 };
 
-final Map suitMap = {
+final Map<Suit, String> suitMap = {
   Suit.clubs: 'club',
   Suit.hearts: 'heart',
   Suit.spades: 'spade',
   Suit.diamonds: 'diamond'
 };
 
-final List valList = valueMap.keys.toList();
-final List suitList = suitMap.keys.toList();
+final valList = valueMap.keys.toList();
+final suitList = suitMap.keys.toList();
+
+CardValue inputValue(BuildContext context) {
+  CardValue inputValue = CardValue.joker_1;
+
+  showDialog(
+    context: context,
+    builder: (context) => Dialog(
+      child: GridView.count(
+        crossAxisCount: 4,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        children: List.generate(
+            13,
+            (index) => TextButton(
+                  child: Text(
+                    '${valueMap[valList[index]]}',
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 36,
+                        fontFamily: 'Georgia'),
+                  ),
+                  onPressed: () {
+                    inputValue = valList[index];
+                    Navigator.of(context).pop();
+                  },
+                )),
+      ),
+    ),
+  );
+
+  return inputValue;
+}
+
+// Suit inputSuit(BuildContext context) {
+//   Suit inputSuit = Suit.joker;
+
+
+
+//   return inputSuit;
+// }
