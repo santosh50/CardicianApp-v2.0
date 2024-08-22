@@ -59,20 +59,18 @@ class _PredictionState extends State<Prediction> {
 
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      appBar: AppBar(
-        title: const Text('Hidden Card'),
-        centerTitle: true,
-        backgroundColor: Colors.purple,
-      ),
       body: Center(
-          child: FlipCard(
-        front: PlayingCardView(
-          card: hiddenCard,
-          showBack: true,
-        ),
-        back: PlayingCardView(
-          card: hiddenCard,
-          showBack: false,
+          child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 15),
+        child: FlipCard(
+          front: PlayingCardView(
+            card: hiddenCard,
+            showBack: true,
+          ),
+          back: PlayingCardView(
+            card: hiddenCard,
+            showBack: false,
+          ),
         ),
       )),
     );

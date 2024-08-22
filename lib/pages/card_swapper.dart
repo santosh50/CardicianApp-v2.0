@@ -56,6 +56,7 @@ class _CardSwapperState extends State<CardSwapper> {
                                   setState(() {
                                     card.value = inputValue;
                                     card.suit = inputSuit;
+                                    card.showBack = false;
                                   });
                                 },
                               ),

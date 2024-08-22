@@ -65,6 +65,7 @@ class _CardPredictorState extends State<CardPredictor> {
                                   setState(() {
                                     card.value = inputValue;
                                     card.suit = inputSuit;
+                                    card.showBack = false;
                                   });
                                 },
                               ),
@@ -84,8 +85,15 @@ class _CardPredictorState extends State<CardPredictor> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        title: const Text('Predict Hidden Card'),
+        title: const Text(
+          'Predict Hidden Card',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 22,
+          ),
+        ),
         centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.purple,
         actions: [
           IconButton(
@@ -103,7 +111,7 @@ class _CardPredictorState extends State<CardPredictor> {
         ],
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           GridView.count(
               crossAxisCount: 2,
@@ -150,7 +158,10 @@ class _CardPredictorState extends State<CardPredictor> {
               },
               child: const Text(
                 'Predict',
-                style: TextStyle(fontSize: 25),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                ),
               )),
         ],
       ),
