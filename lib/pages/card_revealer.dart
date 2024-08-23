@@ -99,8 +99,7 @@ class _CardRevealerState extends State<CardRevealer> {
                             selectCard(index);
                           },
                           child: Container(
-                            color: Colors.primaries[
-                                Random().nextInt(Colors.primaries.length)],
+                            color: Colors.black,
                           ),
                         ))),
       ),
