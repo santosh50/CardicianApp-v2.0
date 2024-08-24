@@ -15,23 +15,23 @@ class DisplayCard extends StatefulWidget {
 }
 
 class _MyCardState extends State<DisplayCard> {
-  bool _showback = true;
   final MagicCard _myCard = MagicCard();
 
-  late int currentStage;
+  late int _currentStage;
+  double _top = 155;
 
   @override
   void initState() {
     super.initState();
 
-    currentStage = widget.stage;
+    _currentStage = widget.stage;
   }
 
   void generateRandomCard() {
     setState(() {
       _myCard.suit = suitList[Random().nextInt(4)];
       _myCard.value = valList[Random().nextInt(13)];
-      _showback = false;
+      _myCard.showBack = false;
     });
   }
 
@@ -45,7 +45,7 @@ class _MyCardState extends State<DisplayCard> {
       ),
     );
 
-    switch (currentStage) {
+    switch (_currentStage) {
       case 1:
         W = Center(
             child: GestureDetector(
@@ -56,13 +56,47 @@ class _MyCardState extends State<DisplayCard> {
             setState(() {
               _myCard.suit = widget.card.suit;
               _myCard.value = widget.card.value;
-              _showback = false;
-              currentStage = 2;
+              _myCard.showBack = false;
+              _currentStage = 2;
             });
           },
           child:
               CustomPlayingCard(_myCard.suit, _myCard.value, _myCard.showBack),
         ));
+        break;
+      case 2:
+        W = Center(
+          child: Stack(children: [
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 600),
+              top: _top,
+              left: 30,
+              onEnd: () {
+                setState(() {
+                  _currentStage = 3;
+                });
+              },
+              child: GestureDetector(
+                onTap: () {
+                  generateRandomCard();
+                  setState(() {
+                    _currentStage = 1;
+                  });
+                },
+                onVerticalDragUpdate: (dragDetails) {
+                  int sensitivity = -10;
+                  if (dragDetails.primaryDelta! < sensitivity) {
+                    setState(() {
+                      _top = -500;
+                    });
+                  }
+                },
+                child: CustomPlayingCard(
+                    _myCard.suit, _myCard.value, _myCard.showBack),
+              ),
+            ),
+          ]),
+        );
     }
 
     return W;

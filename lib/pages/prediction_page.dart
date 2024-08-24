@@ -3,7 +3,6 @@ import 'package:playing_cards/playing_cards.dart';
 import 'package:flip_card/flip_card.dart';
 
 import 'package:cardician_app_v2/card_class.dart';
-import 'package:cardician_app_v2/widgets/custom_playing_card.dart';
 
 class Prediction extends StatefulWidget {
   const Prediction({super.key});

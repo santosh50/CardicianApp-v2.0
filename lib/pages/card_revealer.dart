@@ -91,7 +91,7 @@ class _CardRevealerState extends State<CardRevealer> {
                 children: List.generate(
                     12,
                     (index) => GestureDetector(
-                          onTapDown: (details) {
+                          onTapDown: (tapDetails) {
                             selectCard(index);
                           },
                           child: Container(
