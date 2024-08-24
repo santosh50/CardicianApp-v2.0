@@ -1,6 +1,8 @@
-import 'package:cardician_app_v2/card_class.dart';
 import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
+
+import 'package:cardician_app_v2/card_class.dart';
+import "dart:math";
 
 class DisplayCard extends StatefulWidget {
   final int stage;
@@ -13,7 +15,16 @@ class DisplayCard extends StatefulWidget {
 }
 
 class _DisplayCardState extends State<DisplayCard> {
-  final bool _showback = false;
+  bool _showback = true;
+  final MagicCard _displayCard = MagicCard();
+
+  void generateRandomCard() {
+    setState(() {
+      _displayCard.suit = suitList[Random().nextInt(4)];
+      _displayCard.value = valList[Random().nextInt(13)];
+      _showback = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +37,28 @@ class _DisplayCardState extends State<DisplayCard> {
     );
 
     switch (widget.stage) {
-      case 0:
+      case 1:
         W = Center(
-            child: SizedBox(
-          width: 325,
-          height: 500,
-          child: PlayingCardView(
-            card: PlayingCard(widget.card.suit, widget.card.value),
-            showBack: _showback,
+            child: GestureDetector(
+          onTap: () {
+            generateRandomCard();
+          },
+          onLongPress: () {
+            setState(() {
+              _displayCard.suit = widget.card.suit;
+              _displayCard.value = widget.card.value;
+              _showback = false;
+            });
+          },
+          child: SizedBox(
+            width: 325,
+            height: 500,
+            child: PlayingCardView(
+              card: PlayingCard(_displayCard.suit, _displayCard.value),
+              showBack: _showback,
+            ),
           ),
         ));
-        print('OK');
     }
 
     return W;

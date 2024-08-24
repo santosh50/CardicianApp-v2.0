@@ -79,7 +79,7 @@ class _CardSwapperState extends State<CardSwapper> {
 
   Widget getStageWidget() {
     Widget W = const Center(
-      //Default error widget
+      //Default error message
       child: Text(
         'Card Swapper Error',
         style: TextStyle(color: Colors.red, fontSize: 35),
