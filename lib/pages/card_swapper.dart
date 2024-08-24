@@ -3,6 +3,28 @@ import 'package:playing_cards/playing_cards.dart';
 
 import 'package:cardician_app_v2/card_class.dart';
 
+class DisplayCard extends StatefulWidget {
+  final int _stage;
+
+  const DisplayCard(this._stage, {super.key});
+
+  @override
+  State<DisplayCard> createState() => _DisplayCardState();
+}
+
+class _DisplayCardState extends State<DisplayCard> {
+  Suit displaySuit = Suit.joker;
+  CardValue displayValue = CardValue.joker_1;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Container(
+      margin: const EdgeInsets.symmetric(horizontal: 15),
+    ));
+  }
+}
+
 class CardSwapper extends StatefulWidget {
   const CardSwapper({super.key});
 
@@ -13,6 +35,7 @@ class CardSwapper extends StatefulWidget {
 class _CardSwapperState extends State<CardSwapper> {
   final card1 = MagicCard();
   final card2 = MagicCard();
+  int stage = 0;
 
   void enterCard(MagicCard card) {
     CardValue inputValue = CardValue.joker_1;
@@ -57,6 +80,10 @@ class _CardSwapperState extends State<CardSwapper> {
                                     card.value = inputValue;
                                     card.suit = inputSuit;
                                     card.showBack = false;
+                                    if (card1.suit != Suit.joker &&
+                                        card2.suit != Suit.joker) {
+                                      stage++;
+                                    }
                                   });
                                 },
                               ),
@@ -71,19 +98,37 @@ class _CardSwapperState extends State<CardSwapper> {
     );
   }
 
+  Widget getStageWidget() {
+    Widget widget = Container(
+      color: Colors.yellow,
+    );
+
+    switch (stage) {
+      case 0:
+        widget = GestureDetector(
+          onLongPress: () {
+            enterCard(card1);
+            enterCard(card2);
+          },
+          child: Container(
+            color: Colors.black,
+          ),
+        );
+        break;
+      case 1:
+        widget = Container(
+          color: Colors.pink,
+        );
+    }
+
+    return widget;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: GestureDetector(
-        onTap: () {
-          enterCard(card2);
-          enterCard(card1);
-        },
-        child: Center(
-          child: PlayingCardView(card: PlayingCard(card2.suit, card2.value)),
-        ),
-      ),
+      body: getStageWidget(),
     );
   }
 }
