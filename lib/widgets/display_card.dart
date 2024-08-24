@@ -12,12 +12,12 @@ class DisplayCard extends StatefulWidget {
   const DisplayCard(this.stage, this.card, {super.key});
 
   @override
-  State<DisplayCard> createState() => _DisplayCardState();
+  State<DisplayCard> createState() => _MyCardState();
 }
 
-class _DisplayCardState extends State<DisplayCard> {
+class _MyCardState extends State<DisplayCard> {
   bool _showback = true;
-  final MagicCard _displayCard = MagicCard();
+  final MagicCard _myCard = MagicCard();
 
   late int currentStage;
 
@@ -30,8 +30,8 @@ class _DisplayCardState extends State<DisplayCard> {
 
   void generateRandomCard() {
     setState(() {
-      _displayCard.suit = suitList[Random().nextInt(4)];
-      _displayCard.value = valList[Random().nextInt(13)];
+      _myCard.suit = suitList[Random().nextInt(4)];
+      _myCard.value = valList[Random().nextInt(13)];
       _showback = false;
     });
   }
@@ -55,20 +55,22 @@ class _DisplayCardState extends State<DisplayCard> {
           },
           onLongPress: () {
             setState(() {
-              _displayCard.suit = widget.card.suit;
-              _displayCard.value = widget.card.value;
+              _myCard.suit = widget.card.suit;
+              _myCard.value = widget.card.value;
               _showback = false;
               currentStage = 2;
             });
           },
-          child: SizedBox(
-            width: 325,
-            height: 500,
-            child: PlayingCardView(
-              card: PlayingCard(_displayCard.suit, _displayCard.value),
-              showBack: _showback,
-            ),
-          ),
+          child:
+              CustomPlayingCard(_myCard.suit, _myCard.value, _myCard.showBack),
+          // child: SizedBox(
+          //   width: 325,
+          //   height: 500,
+          //   child: PlayingCardView(
+          //     card: PlayingCard(_myCard.suit, _myCard.value),
+          //     showBack: _showback,
+          //   ),
+          // ),
         ));
     }
 
