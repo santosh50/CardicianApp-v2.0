@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
 
 import 'package:cardician_app_v2/card_class.dart';
-import 'package:cardician_app_v2/display_card.dart';
+import 'package:cardician_app_v2/widgets/display_card.dart';
 
 class CardSwapper extends StatefulWidget {
   const CardSwapper({super.key});

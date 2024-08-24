@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
 
 import 'package:cardician_app_v2/card_class.dart';
+import 'package:cardician_app_v2/widgets/custom_playing_card.dart';
 import "dart:math";
 
 class DisplayCard extends StatefulWidget {
@@ -17,6 +18,15 @@ class DisplayCard extends StatefulWidget {
 class _DisplayCardState extends State<DisplayCard> {
   bool _showback = true;
   final MagicCard _displayCard = MagicCard();
+
+  late int currentStage;
+
+  @override
+  void initState() {
+    super.initState();
+
+    currentStage = widget.stage;
+  }
 
   void generateRandomCard() {
     setState(() {
@@ -36,7 +46,7 @@ class _DisplayCardState extends State<DisplayCard> {
       ),
     );
 
-    switch (widget.stage) {
+    switch (currentStage) {
       case 1:
         W = Center(
             child: GestureDetector(
@@ -48,6 +58,7 @@ class _DisplayCardState extends State<DisplayCard> {
               _displayCard.suit = widget.card.suit;
               _displayCard.value = widget.card.value;
               _showback = false;
+              currentStage = 2;
             });
           },
           child: SizedBox(
