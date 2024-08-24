@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
+import 'package:cardician_app_v2/widgets/custom_playing_card.dart';
 
 import 'package:cardician_app_v2/card_class.dart';
 
@@ -122,18 +123,11 @@ class _CardPredictorState extends State<CardPredictor> {
               children: List.generate(
                 4,
                 (id) => InkWell(
-                  onTap: () {
-                    enterCard(cardList[id]);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: PlayingCardView(
-                      card: PlayingCard(cardList[id].suit, cardList[id].value),
-                      showBack: cardList[id].showBack,
-                      elevation: 10,
-                    ),
-                  ),
-                ),
+                    onTap: () {
+                      enterCard(cardList[id]);
+                    },
+                    child: CustomPlayingCard(cardList[id].suit,
+                        cardList[id].value, cardList[id].showBack)),
               )),
           const Divider(),
           ElevatedButton(
