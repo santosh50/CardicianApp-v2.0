@@ -3,6 +3,7 @@ import 'package:playing_cards/playing_cards.dart';
 import 'package:scratcher/scratcher.dart';
 
 import 'package:cardician_app_v2/card_class.dart';
+import 'package:cardician_app_v2/widgets/custom_playing_card.dart';
 
 class CardRevealer extends StatefulWidget {
   const CardRevealer({super.key});
@@ -81,11 +82,7 @@ class _CardRevealerState extends State<CardRevealer> {
         }),
         child: isCardSelected
             ? Center(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 15),
-                  child: PlayingCardView(
-                      card: PlayingCard(myCard.suit, myCard.value)),
-                ),
+                child: CustomPlayingCard(myCard.suit, myCard.value, true),
               )
             : GridView.count(
                 crossAxisCount: 3,
