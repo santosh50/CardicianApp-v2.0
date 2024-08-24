@@ -61,7 +61,7 @@ class _CardSwapperState extends State<CardSwapper> {
                                     card.showBack = false;
                                     if (card1.suit != Suit.joker &&
                                         card2.suit != Suit.joker) {
-                                      stage++;
+                                      stage = 1;
                                     }
                                   });
                                 },
@@ -78,16 +78,20 @@ class _CardSwapperState extends State<CardSwapper> {
   }
 
   Widget getStageWidget() {
-    Widget widget = Container(
-      color: Colors.yellow,
+    Widget W = const Center(
+      //Default error widget
+      child: Text(
+        'Card Swapper Error',
+        style: TextStyle(color: Colors.red, fontSize: 35),
+      ),
     );
 
     switch (stage) {
       case 0:
-        widget = GestureDetector(
+        W = GestureDetector(
           onLongPress: () {
-            enterCard(card1);
             enterCard(card2);
+            enterCard(card1);
           },
           child: Container(
             color: Colors.black,
@@ -95,10 +99,10 @@ class _CardSwapperState extends State<CardSwapper> {
         );
         break;
       case 1:
-        widget = DisplayCard(stage);
+        W = DisplayCard(stage, card1);
     }
 
-    return widget;
+    return W;
   }
 
   @override
