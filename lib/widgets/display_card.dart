@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:playing_cards/playing_cards.dart';
 
 import 'package:cardician_app_v2/card_class.dart';
 import 'package:cardician_app_v2/widgets/custom_playing_card.dart';
@@ -63,14 +62,6 @@ class _MyCardState extends State<DisplayCard> {
           },
           child:
               CustomPlayingCard(_myCard.suit, _myCard.value, _myCard.showBack),
-          // child: SizedBox(
-          //   width: 325,
-          //   height: 500,
-          //   child: PlayingCardView(
-          //     card: PlayingCard(_myCard.suit, _myCard.value),
-          //     showBack: _showback,
-          //   ),
-          // ),
         ));
     }
 
