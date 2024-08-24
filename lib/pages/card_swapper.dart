@@ -2,28 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
 
 import 'package:cardician_app_v2/card_class.dart';
-
-class DisplayCard extends StatefulWidget {
-  final int _stage;
-
-  const DisplayCard(this._stage, {super.key});
-
-  @override
-  State<DisplayCard> createState() => _DisplayCardState();
-}
-
-class _DisplayCardState extends State<DisplayCard> {
-  Suit displaySuit = Suit.joker;
-  CardValue displayValue = CardValue.joker_1;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Container(
-      margin: const EdgeInsets.symmetric(horizontal: 15),
-    ));
-  }
-}
+import 'package:cardician_app_v2/display_card.dart';
 
 class CardSwapper extends StatefulWidget {
   const CardSwapper({super.key});
@@ -116,9 +95,7 @@ class _CardSwapperState extends State<CardSwapper> {
         );
         break;
       case 1:
-        widget = Container(
-          color: Colors.pink,
-        );
+        widget = DisplayCard(stage);
     }
 
     return widget;
