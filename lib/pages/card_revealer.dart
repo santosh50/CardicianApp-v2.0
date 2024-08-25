@@ -76,13 +76,13 @@ class _CardRevealerState extends State<CardRevealer> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Scratcher(
-        brushSize: 70,
+        brushSize: 100,
         onScratchUpdate: () => setState(() {
           isCardSelected = true;
         }),
         child: isCardSelected
             ? Center(
-                child: CustomPlayingCard(_myCard.suit, _myCard.value, true),
+                child: CustomPlayingCard(_myCard.suit, _myCard.value, false),
               )
             : GridView.count(
                 crossAxisCount: 3,
