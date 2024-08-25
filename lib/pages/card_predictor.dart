@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
 
 import 'package:cardician_app_v2/card_class.dart';
-import 'package:cardician_app_v2/widgets/custom_playing_card.dart';
 
 class CardPredictor extends StatefulWidget {
   const CardPredictor({super.key});
@@ -126,8 +125,15 @@ class _CardPredictorState extends State<CardPredictor> {
                     onTap: () {
                       enterCard(cardList[id]);
                     },
-                    child: CustomPlayingCard(cardList[id].suit,
-                        cardList[id].value, cardList[id].showBack)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: PlayingCardView(
+                        card:
+                            PlayingCard(cardList[id].suit, cardList[id].value),
+                        showBack: cardList[id].showBack,
+                        elevation: 10,
+                      ),
+                    )),
               )),
           const Divider(),
           ElevatedButton(
