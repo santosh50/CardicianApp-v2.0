@@ -3,7 +3,7 @@ import 'package:playing_cards/playing_cards.dart';
 import 'package:scratcher/scratcher.dart';
 
 import 'package:cardician_app_v2/card_class.dart';
-import 'package:cardician_app_v2/widgets/custom_playing_card.dart';
+import 'package:cardician_app_v2/custom_playing_card.dart';
 
 class CardRevealer extends StatefulWidget {
   const CardRevealer({super.key});

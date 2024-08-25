@@ -63,9 +63,10 @@ class HomePage extends StatelessWidget {
                   Navigator.pushNamed(context, '/swap');
                 },
                 style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.orange),
-                    padding: WidgetStatePropertyAll(
-                        EdgeInsets.symmetric(vertical: 30))),
+                  backgroundColor: WidgetStatePropertyAll(Colors.orange),
+                  padding: WidgetStatePropertyAll(
+                      EdgeInsets.symmetric(vertical: 30)),
+                ),
                 child: const Text(
                   'Card Swapper',
                   style: TextStyle(
