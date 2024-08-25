@@ -13,58 +13,58 @@ class CardRevealer extends StatefulWidget {
 }
 
 class _CardRevealerState extends State<CardRevealer> {
-  final _myCard = MagicCard();
+  final _displayCard = MagicCard();
   bool isCardSelected = false;
 
   void selectCard(int index) {
     switch (index) {
       case 0:
-        _myCard.suit = Suit.clubs;
-        _myCard.value = CardValue.jack;
+        _displayCard.suit = Suit.clubs;
+        _displayCard.value = CardValue.jack;
         break;
       case 1:
-        _myCard.suit = Suit.clubs;
-        _myCard.value = CardValue.queen;
+        _displayCard.suit = Suit.clubs;
+        _displayCard.value = CardValue.queen;
         break;
       case 2:
-        _myCard.suit = Suit.clubs;
-        _myCard.value = CardValue.king;
+        _displayCard.suit = Suit.clubs;
+        _displayCard.value = CardValue.king;
         break;
       case 3:
-        _myCard.suit = Suit.hearts;
-        _myCard.value = CardValue.jack;
+        _displayCard.suit = Suit.hearts;
+        _displayCard.value = CardValue.jack;
         break;
       case 4:
-        _myCard.suit = Suit.hearts;
-        _myCard.value = CardValue.queen;
+        _displayCard.suit = Suit.hearts;
+        _displayCard.value = CardValue.queen;
         break;
       case 5:
-        _myCard.suit = Suit.hearts;
-        _myCard.value = CardValue.king;
+        _displayCard.suit = Suit.hearts;
+        _displayCard.value = CardValue.king;
         break;
       case 6:
-        _myCard.suit = Suit.spades;
-        _myCard.value = CardValue.jack;
+        _displayCard.suit = Suit.spades;
+        _displayCard.value = CardValue.jack;
         break;
       case 7:
-        _myCard.suit = Suit.spades;
-        _myCard.value = CardValue.queen;
+        _displayCard.suit = Suit.spades;
+        _displayCard.value = CardValue.queen;
         break;
       case 8:
-        _myCard.suit = Suit.spades;
-        _myCard.value = CardValue.king;
+        _displayCard.suit = Suit.spades;
+        _displayCard.value = CardValue.king;
         break;
       case 9:
-        _myCard.suit = Suit.diamonds;
-        _myCard.value = CardValue.jack;
+        _displayCard.suit = Suit.diamonds;
+        _displayCard.value = CardValue.jack;
         break;
       case 10:
-        _myCard.suit = Suit.diamonds;
-        _myCard.value = CardValue.queen;
+        _displayCard.suit = Suit.diamonds;
+        _displayCard.value = CardValue.queen;
         break;
       case 11:
-        _myCard.suit = Suit.diamonds;
-        _myCard.value = CardValue.king;
+        _displayCard.suit = Suit.diamonds;
+        _displayCard.value = CardValue.king;
         break;
     }
   }
@@ -82,7 +82,8 @@ class _CardRevealerState extends State<CardRevealer> {
         }),
         child: isCardSelected
             ? Center(
-                child: CustomPlayingCard(_myCard.suit, _myCard.value, false),
+                child: CustomPlayingCard(
+                    _displayCard.suit, _displayCard.value, false),
               )
             : GridView.count(
                 crossAxisCount: 3,
