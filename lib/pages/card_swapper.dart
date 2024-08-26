@@ -3,7 +3,6 @@ import 'package:playing_cards/playing_cards.dart';
 
 import 'package:cardician_app_v2/card_class.dart';
 import 'package:cardician_app_v2/custom_playing_card.dart';
-// import 'package:cardician_app_v2/widgets/display_card.dart';
 import "dart:math";
 
 class CardSwapper extends StatefulWidget {
@@ -20,6 +19,19 @@ class _CardSwapperState extends State<CardSwapper> {
 
   int _stage = 0;
   double _top = 155;
+  // late ShakeDetector detector;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+
+  //   print('START');
+  //   detector = ShakeDetector.waitForStart(onPhoneShake: () {
+  //     setState(() {
+  //       _stage = 3;
+  //     });
+  //   });
+  // }
 
   void generateRandomCard() {
     setState(() {
@@ -136,11 +148,7 @@ class _CardSwapperState extends State<CardSwapper> {
               duration: const Duration(milliseconds: 600),
               top: _top,
               left: 30,
-              onEnd: () {
-                setState(() {
-                  _stage = 3;
-                });
-              },
+              onEnd: () {},
               child: GestureDetector(
                 onTap: () {
                   generateRandomCard();
