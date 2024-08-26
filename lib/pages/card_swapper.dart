@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
+import 'package:shake_detector/shake_detector.dart';
 
 import 'package:cardician_app_v2/card_class.dart';
 import 'package:cardician_app_v2/custom_playing_card.dart';
@@ -19,19 +20,20 @@ class _CardSwapperState extends State<CardSwapper> {
 
   int _stage = 0;
   double _top = 155;
-  // late ShakeDetector detector;
+  late ShakeDetector detector;
 
-  // @override
-  // void initState() {
-  //   super.initState();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
 
-  //   print('START');
-  //   detector = ShakeDetector.waitForStart(onPhoneShake: () {
-  //     setState(() {
-  //       _stage = 3;
-  //     });
-  //   });
-  // }
+    detector = ShakeDetector.waitForStart(onShake: () {
+      setState(() {
+        _stage = 3;
+      });
+      generateRandomCard();
+    });
+  }
 
   void generateRandomCard() {
     setState(() {
@@ -145,10 +147,12 @@ class _CardSwapperState extends State<CardSwapper> {
         W = Center(
           child: Stack(children: [
             AnimatedPositioned(
-              duration: const Duration(milliseconds: 600),
+              duration: const Duration(milliseconds: 500),
               top: _top,
               left: 30,
-              onEnd: () {},
+              onEnd: () {
+                detector.startListening();
+              },
               child: GestureDetector(
                 onTap: () {
                   generateRandomCard();
@@ -169,6 +173,17 @@ class _CardSwapperState extends State<CardSwapper> {
               ),
             ),
           ]),
+        );
+      case 3:
+        detector.stopListening();
+        setState(() {
+          _displayCard.suit = card2.suit;
+          _displayCard.value = card2.value;
+          _displayCard.showBack = false;
+        });
+        W = Center(
+          child: CustomPlayingCard(
+              _displayCard.suit, _displayCard.value, _displayCard.showBack),
         );
     }
 

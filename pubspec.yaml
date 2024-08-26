@@ -39,6 +39,7 @@ dependencies:
   playing_cards: ^0.4.1+11
   flip_card: ^0.7.0
   scratcher: ^2.5.0
+  shake_detector: ^0.1.2
 
 dev_dependencies:
   flutter_test:
