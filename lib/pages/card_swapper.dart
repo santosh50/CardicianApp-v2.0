@@ -131,13 +131,16 @@ class _CardSwapperState extends State<CardSwapper> {
           onTap: () {
             generateRandomCard();
           },
-          onLongPress: () {
-            setState(() {
-              _displayCard.suit = card1.suit;
-              _displayCard.value = card1.value;
-              _displayCard.showBack = false;
-              _stage = 2;
-            });
+          onVerticalDragUpdate: (dragDetails) {
+            if (dragDetails.primaryDelta! > 0) {
+              //drag down
+              setState(() {
+                _displayCard.suit = card1.suit;
+                _displayCard.value = card1.value;
+                _displayCard.showBack = false;
+                _stage = 2;
+              });
+            }
           },
           child: CustomPlayingCard(
               _displayCard.suit, _displayCard.value, _displayCard.showBack),
