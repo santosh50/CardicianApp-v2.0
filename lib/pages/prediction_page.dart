@@ -15,6 +15,7 @@ class _PredictionState extends State<Prediction> {
   List _cards = [];
 
   int compareCards(a, b) {
+    //Compare suit and value of given 2 cards
     if (valList.indexOf(a.value) < valList.indexOf(b.value)) {
       return -1;
     } else if (valList.indexOf(a.value) > valList.indexOf(b.value)) {
@@ -54,7 +55,8 @@ class _PredictionState extends State<Prediction> {
 
   @override
   Widget build(BuildContext context) {
-    _cards = ModalRoute.of(context)?.settings.arguments as List;
+    _cards = ModalRoute.of(context)?.settings.arguments
+        as List; //get card list from card_predictor page
     PlayingCard hiddenCard = predictHiddenCard(_cards);
 
     return Scaffold(
@@ -64,6 +66,7 @@ class _PredictionState extends State<Prediction> {
         width: 325,
         height: 500,
         child: FlipCard(
+          //flip card on tap
           front: PlayingCardView(
             card: hiddenCard,
             showBack: true,

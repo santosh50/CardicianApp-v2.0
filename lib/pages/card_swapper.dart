@@ -16,7 +16,7 @@ class CardSwapper extends StatefulWidget {
 class _CardSwapperState extends State<CardSwapper> {
   final card1 = MagicCard(); //swapped card
   final card2 = MagicCard(); //initial card
-  final _displayCard = MagicCard(); //card shown in UI
+  final _displayCard = MagicCard(); //card rendered in UI
 
   int _stage = 0; //represents card trick state
   double _top = 155; //for slide animation
@@ -131,7 +131,7 @@ class _CardSwapperState extends State<CardSwapper> {
           },
           onVerticalDragUpdate: (dragDetails) {
             if (dragDetails.primaryDelta! > 0) {
-              //drag down
+              //on swipe down
               setState(() {
                 _displayCard.suit = card1.suit;
                 _displayCard.value = card1.value;
@@ -162,6 +162,7 @@ class _CardSwapperState extends State<CardSwapper> {
                   });
                 },
                 onVerticalDragUpdate: (dragDetails) {
+                  //on swip up
                   int sensitivity = -10;
                   if (dragDetails.primaryDelta! < sensitivity) {
                     setState(() {

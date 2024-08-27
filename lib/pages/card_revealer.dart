@@ -13,10 +13,11 @@ class CardRevealer extends StatefulWidget {
 }
 
 class _CardRevealerState extends State<CardRevealer> {
-  final _displayCard = MagicCard();
+  final _displayCard = MagicCard(); //card rendered in UI
   bool isCardSelected = false;
 
   void selectCard(int index) {
+    //Select card based on screen position tapped
     switch (index) {
       case 0:
         _displayCard.suit = Suit.clubs;
@@ -87,7 +88,8 @@ class _CardRevealerState extends State<CardRevealer> {
               )
             : GridView.count(
                 crossAxisCount: 3,
-                childAspectRatio: size.width / (size.height / 1.4),
+                childAspectRatio: size.width /
+                    (size.height / 1.4), //Size of container to be tapped
                 physics: const NeverScrollableScrollPhysics(),
                 children: List.generate(
                     12,

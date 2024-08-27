@@ -11,7 +11,7 @@ class CardPredictor extends StatefulWidget {
 }
 
 class _CardPredictorState extends State<CardPredictor> {
-  late List<MagicCard> cardList;
+  late List<MagicCard> cardList; //4 input cards
 
   @override
   void initState() {
@@ -121,7 +121,7 @@ class _CardPredictorState extends State<CardPredictor> {
               physics: const NeverScrollableScrollPhysics(),
               children: List.generate(
                 4,
-                (id) => InkWell(
+                (id) => GestureDetector(
                     onTap: () {
                       enterCard(cardList[id]);
                     },

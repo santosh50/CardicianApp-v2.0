@@ -11,7 +11,7 @@ void main() {
   //Ensure app is initialized before locking device orientation
   WidgetsFlutterBinding.ensureInitialized(); //returns Future object
 
-  //Fix orientation to portrait and run the app
+  //Lock orientation to portrait and run the app
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(MaterialApp(
             title: 'Cardician',

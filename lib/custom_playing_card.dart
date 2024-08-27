@@ -9,6 +9,7 @@ class CustomPlayingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Render Playing Card widget with fixed height and width
     return SizedBox(
       width: 325,
       height: 500,
