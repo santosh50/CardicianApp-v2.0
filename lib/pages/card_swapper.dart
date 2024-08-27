@@ -115,8 +115,8 @@ class _CardSwapperState extends State<CardSwapper> {
       case 0:
         W = GestureDetector(
           onLongPress: () {
-            enterCard(card2);
             enterCard(card1);
+            enterCard(card2);
           },
           child: Container(
             color: Colors.black,
