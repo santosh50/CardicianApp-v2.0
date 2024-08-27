@@ -14,17 +14,16 @@ class CardSwapper extends StatefulWidget {
 }
 
 class _CardSwapperState extends State<CardSwapper> {
-  final card1 = MagicCard();
-  final card2 = MagicCard();
-  final _displayCard = MagicCard();
+  final card1 = MagicCard(); //swapped card
+  final card2 = MagicCard(); //initial card
+  final _displayCard = MagicCard(); //card shown in UI
 
-  int _stage = 0;
-  double _top = 155;
+  int _stage = 0; //represents card trick state
+  double _top = 155; //for slide animation
   late ShakeDetector detector;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     detector = ShakeDetector.waitForStart(onShake: () {
