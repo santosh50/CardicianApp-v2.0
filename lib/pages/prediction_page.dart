@@ -21,9 +21,9 @@ class _PredictionState extends State<Prediction> {
     } else if (valList.indexOf(a.value) > valList.indexOf(b.value)) {
       return 1;
     } else {
-      if (suitList.indexOf(a.suit) < suitList.indexOf(b.suit)) {
+      if (suitList.indexOf(a.suit) > suitList.indexOf(b.suit)) {
         return -1;
-      } else if (suitList.indexOf(a.suit) > suitList.indexOf(b.suit)) {
+      } else if (suitList.indexOf(a.suit) < suitList.indexOf(b.suit)) {
         return 1;
       } else {
         return 0;
