@@ -30,7 +30,6 @@ class _CardSwapperState extends State<CardSwapper> {
       setState(() {
         _stage = 3;
       });
-      generateRandomCard();
     });
   }
 
@@ -184,8 +183,20 @@ class _CardSwapperState extends State<CardSwapper> {
           _displayCard.showBack = false;
         });
         W = Center(
-          child: CustomPlayingCard(
-              _displayCard.suit, _displayCard.value, _displayCard.showBack),
+          child: Draggable(
+            feedback: CustomPlayingCard(
+                _displayCard.suit, _displayCard.value, _displayCard.showBack),
+            childWhenDragging: Container(),
+            onDraggableCanceled: (velocity, offset) {
+              if (offset.dx > 200) {
+                setState(() {
+                  _stage = 0;
+                });
+              }
+            },
+            child: CustomPlayingCard(
+                _displayCard.suit, _displayCard.value, _displayCard.showBack),
+          ),
         );
     }
 
