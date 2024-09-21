@@ -1,3 +1,4 @@
+import 'package:cardician_app_v2/pages/card_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -22,6 +23,7 @@ void main() {
               '/prediction': (context) => const Prediction(),
               '/reveal': (context) => const CardRevealer(),
               '/swap': (context) => const CardSwapper(),
+              '/generate': (context) => const CardGenerator(),
             },
           )));
 }
