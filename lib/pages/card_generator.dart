@@ -12,6 +12,12 @@ class CardGenerator extends StatefulWidget {
 }
 
 class _CardGeneratorState extends State<CardGenerator> {
+  final card1 = MagicCard(); //first revealed card
+  final card2 = MagicCard(); //second revealed card
+  final _displayCard = MagicCard(); //card rendered in UI
+
+  final int _stage = 0; //represents card trick state
+
   @override
   Widget build(BuildContext context) {
     return const Placeholder();

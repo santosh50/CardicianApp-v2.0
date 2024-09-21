@@ -102,7 +102,7 @@ class _CardSwapperState extends State<CardSwapper> {
     );
   }
 
-  Widget getStageWidget() {
+  Widget renderStageWidget() {
     Widget W = const Center(
       //Default error message
       child: Text(
@@ -208,7 +208,7 @@ class _CardSwapperState extends State<CardSwapper> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: getStageWidget(),
+      body: renderStageWidget(),
     );
   }
 }
