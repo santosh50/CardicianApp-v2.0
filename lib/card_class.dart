@@ -1,6 +1,7 @@
 import 'package:playing_cards/playing_cards.dart';
 import "dart:math";
 
+// Class to store playing card details
 class MagicCard {
   Suit suit = Suit.joker;
   CardValue value = CardValue.joker_1;
@@ -19,6 +20,7 @@ class MagicCard {
   }
 }
 
+// Mapping card values to their character symbols
 final Map<CardValue, String> valueMap = {
   CardValue.ace: 'A',
   CardValue.two: '2',
@@ -35,6 +37,7 @@ final Map<CardValue, String> valueMap = {
   CardValue.king: 'K'
 };
 
+// Mapping card suits to their lowercase strings
 final Map<Suit, String> suitMap = {
   Suit.clubs: 'club',
   Suit.hearts: 'heart',
@@ -42,5 +45,6 @@ final Map<Suit, String> suitMap = {
   Suit.diamonds: 'diamond'
 };
 
+// Converting value & suit maps to lists
 final valList = valueMap.keys.toList();
 final suitList = suitMap.keys.toList();

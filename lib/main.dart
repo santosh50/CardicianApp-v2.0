@@ -9,10 +9,10 @@ import 'package:cardician_app_v2/pages/card_revealer.dart';
 import 'package:cardician_app_v2/pages/card_swapper.dart';
 
 void main() {
-  //Ensure app is initialized before locking device orientation
-  WidgetsFlutterBinding.ensureInitialized(); //returns Future object
+  // Ensure app is initialized before fixing device orientation
+  WidgetsFlutterBinding.ensureInitialized(); // returns Future object
 
-  //Lock orientation to portrait and run the app
+  // Lock orientation to portrait and run the app
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(MaterialApp(
             title: 'Cardician',

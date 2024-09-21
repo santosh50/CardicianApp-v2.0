@@ -14,8 +14,8 @@ class Prediction extends StatefulWidget {
 class _PredictionState extends State<Prediction> {
   List _cards = [];
 
+  // Compare suit and value of given 2 cards
   int compareCards(a, b) {
-    //Compare suit and value of given 2 cards
     if (valList.indexOf(a.value) < valList.indexOf(b.value)) {
       return -1;
     } else if (valList.indexOf(a.value) > valList.indexOf(b.value)) {
@@ -31,19 +31,20 @@ class _PredictionState extends State<Prediction> {
     }
   }
 
+  // Calculating 5th card
   PlayingCard predictHiddenCard(List cards) {
-    //Determine order
+    // Determine order
     final List triplet = cards.sublist(1);
     List tripletSorted = List.from(triplet);
     tripletSorted.sort(compareCards);
     final order = triplet.map((e) => tripletSorted.indexOf(e)).toList();
 
-    //Determine additional count
+    // Determine additional count
     int addCount = order[0] * 4 + order[1] * 2 + order[2];
     int temp = addCount - 3;
     addCount = temp - (temp ~/ 4);
 
-    //Determine Hidden Card
+    // Determine Hidden Card
     final MagicCard keyCard = cards[0];
     final Suit hiddenSuit = keyCard.suit;
     int position = valList.indexOf(keyCard.value);
@@ -56,7 +57,7 @@ class _PredictionState extends State<Prediction> {
   @override
   Widget build(BuildContext context) {
     _cards = ModalRoute.of(context)?.settings.arguments
-        as List; //get card list from card_predictor page
+        as List; // Get card list from card_predictor page
     PlayingCard hiddenCard = predictHiddenCard(_cards);
 
     return Scaffold(
@@ -66,7 +67,7 @@ class _PredictionState extends State<Prediction> {
         width: 325,
         height: 500,
         child: FlipCard(
-          //flip card on tap
+          // Flip card on tap
           front: PlayingCardView(
             card: hiddenCard,
             showBack: true,

@@ -11,26 +11,30 @@ class CardPredictor extends StatefulWidget {
 }
 
 class _CardPredictorState extends State<CardPredictor> {
-  late List<MagicCard> cardList; //4 input cards
+  late List<MagicCard> cardList; // List of 4 input cards
 
   @override
   void initState() {
     super.initState();
 
+    // Initialize list with 4 empty cards
     cardList = [];
     for (int i = 0; i < 4; i++) {
       cardList.add(MagicCard());
     }
   }
 
+  // Input the suit and value of the card
   void enterCard(MagicCard card) {
-    CardValue inputValue = CardValue.joker_1;
-    Suit inputSuit = Suit.joker;
+    CardValue value = CardValue.joker_1;
+    Suit suit = Suit.joker;
 
     showDialog(
+      // Select the value
       context: context,
       builder: (context) => Dialog(
         child: GridView.count(
+          // Grid of values
           crossAxisCount: 4,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -45,12 +49,14 @@ class _CardPredictorState extends State<CardPredictor> {
                           fontFamily: 'Georgia'),
                     ),
                     onPressed: () {
-                      inputValue = valList[index];
+                      value = valList[index];
                       Navigator.of(context).pop();
                       showDialog(
+                        // Select the suit
                         context: context,
                         builder: (context) => Dialog(
                           child: GridView.count(
+                            // Grid of suits
                             crossAxisCount: 2,
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
@@ -60,12 +66,10 @@ class _CardPredictorState extends State<CardPredictor> {
                                 icon: Image.asset(
                                     'images/${suitMap[suitList[index]]}.png'),
                                 onPressed: () {
-                                  inputSuit = suitList[index];
+                                  suit = suitList[index];
                                   Navigator.of(context).pop();
                                   setState(() {
-                                    card.value = inputValue;
-                                    card.suit = inputSuit;
-                                    card.showBack = false;
+                                    card.inputCard(value, suit);
                                   });
                                 },
                               ),
@@ -99,6 +103,7 @@ class _CardPredictorState extends State<CardPredictor> {
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: () {
+              // Reset cards to initial state
               setState(() {
                 cardList = [];
                 for (int i = 0; i < 4; i++) {
@@ -144,6 +149,7 @@ class _CardPredictorState extends State<CardPredictor> {
                     horizontal: 50,
                   ))),
               onPressed: () {
+                // Check if all cards are inputted
                 if (cardList.any((c) => c.suit == Suit.joker)) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text(
@@ -152,6 +158,7 @@ class _CardPredictorState extends State<CardPredictor> {
                     ),
                   ));
                 } else {
+                  // Go to prediction reveal page if all cards are entered
                   Navigator.pushNamed(context, '/prediction',
                       arguments: cardList);
                 }

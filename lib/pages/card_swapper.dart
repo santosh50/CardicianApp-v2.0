@@ -34,9 +34,10 @@ class _CardSwapperState extends State<CardSwapper> {
     });
   }
 
+  // Input the suit and value of the card
   void enterCard(MagicCard card) {
-    CardValue value = CardValue.joker_1; // Card inputValue
-    Suit suit = Suit.joker; // Card inputSuit
+    CardValue value = CardValue.joker_1;
+    Suit suit = Suit.joker;
 
     showDialog(
       // Select the value

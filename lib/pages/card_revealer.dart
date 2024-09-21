@@ -13,72 +13,61 @@ class CardRevealer extends StatefulWidget {
 }
 
 class _CardRevealerState extends State<CardRevealer> {
-  final _displayCard = MagicCard(); //card rendered in UI
+  final _displayCard = MagicCard(); // Card rendered in UI
   bool isCardSelected = false;
 
+  // Select card based on screen position tapped
   void selectCard(int index) {
-    //Select card based on screen position tapped
     switch (index) {
       case 0:
-        _displayCard.suit = Suit.clubs;
-        _displayCard.value = CardValue.jack;
+        _displayCard.inputCard(CardValue.jack, Suit.clubs);
         break;
       case 1:
-        _displayCard.suit = Suit.clubs;
-        _displayCard.value = CardValue.queen;
+        _displayCard.inputCard(CardValue.queen, Suit.clubs);
         break;
       case 2:
-        _displayCard.suit = Suit.clubs;
-        _displayCard.value = CardValue.king;
+        _displayCard.inputCard(CardValue.king, Suit.clubs);
         break;
       case 3:
-        _displayCard.suit = Suit.hearts;
-        _displayCard.value = CardValue.jack;
+        _displayCard.inputCard(CardValue.jack, Suit.hearts);
         break;
       case 4:
-        _displayCard.suit = Suit.hearts;
-        _displayCard.value = CardValue.queen;
+        _displayCard.inputCard(CardValue.queen, Suit.hearts);
         break;
       case 5:
-        _displayCard.suit = Suit.hearts;
-        _displayCard.value = CardValue.king;
+        _displayCard.inputCard(CardValue.king, Suit.hearts);
         break;
       case 6:
-        _displayCard.suit = Suit.spades;
-        _displayCard.value = CardValue.jack;
+        _displayCard.inputCard(CardValue.jack, Suit.spades);
         break;
       case 7:
-        _displayCard.suit = Suit.spades;
-        _displayCard.value = CardValue.queen;
+        _displayCard.inputCard(CardValue.queen, Suit.spades);
         break;
       case 8:
-        _displayCard.suit = Suit.spades;
-        _displayCard.value = CardValue.king;
+        _displayCard.inputCard(CardValue.king, Suit.spades);
         break;
       case 9:
-        _displayCard.suit = Suit.diamonds;
-        _displayCard.value = CardValue.jack;
+        _displayCard.inputCard(CardValue.jack, Suit.diamonds);
         break;
       case 10:
-        _displayCard.suit = Suit.diamonds;
-        _displayCard.value = CardValue.queen;
+        _displayCard.inputCard(CardValue.queen, Suit.diamonds);
         break;
       case 11:
-        _displayCard.suit = Suit.diamonds;
-        _displayCard.value = CardValue.king;
+        _displayCard.inputCard(CardValue.king, Suit.diamonds);
         break;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size; //get entirescreen size
+    var size = MediaQuery.of(context).size; // Fetch entire screen size
 
     return Scaffold(
       backgroundColor: Colors.black,
       body: Scratcher(
         brushSize: 100,
         onScratchUpdate: () => setState(() {
+          // Reveal the selected card
           isCardSelected = true;
         }),
         child: isCardSelected
@@ -89,7 +78,7 @@ class _CardRevealerState extends State<CardRevealer> {
             : GridView.count(
                 crossAxisCount: 3,
                 childAspectRatio: size.width /
-                    (size.height / 1.4), //Size of container to be tapped
+                    (size.height / 1.4), // Size of container to be tapped
                 physics: const NeverScrollableScrollPhysics(),
                 children: List.generate(
                     12,
