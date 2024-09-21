@@ -13,41 +13,37 @@ class CardSwapper extends StatefulWidget {
 }
 
 class _CardSwapperState extends State<CardSwapper> {
-  final card1 = MagicCard(); //swapped card
-  final card2 = MagicCard(); //initial card
-  final _displayCard = MagicCard(); //card rendered in UI
+  final card1 = MagicCard(); // Swapped card
+  final card2 = MagicCard(); // Initial card
+  final _displayCard = MagicCard(); // Card rendered in UI
 
-  int _stage = 0; //represents card trick state
-  double _top = 155; //for slide animation
+  int _stage = 0; // Represents card trick state
+  double _top = 155; // For slide animation
   late ShakeDetector detector;
 
   @override
   void initState() {
     super.initState();
 
+    // Initialize shake detector
     detector = ShakeDetector.waitForStart(onShake: () {
       setState(() {
+        // Go to stage 3 on phone shake
         _stage = 3;
       });
     });
   }
 
-  // void generateRandomCard() {
-  //   setState(() {
-  //     _displayCard.suit = suitList[Random().nextInt(4)];
-  //     _displayCard.value = valList[Random().nextInt(13)];
-  //     _displayCard.showBack = false;
-  //   });
-  // }
-
   void enterCard(MagicCard card) {
-    CardValue inputValue = CardValue.joker_1;
-    Suit inputSuit = Suit.joker;
+    CardValue value = CardValue.joker_1; // Card inputValue
+    Suit suit = Suit.joker; // Card inputSuit
 
     showDialog(
+      // Select the value
       context: context,
       builder: (context) => Dialog(
         child: GridView.count(
+          // Grid of values
           crossAxisCount: 4,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -62,12 +58,14 @@ class _CardSwapperState extends State<CardSwapper> {
                           fontFamily: 'Georgia'),
                     ),
                     onPressed: () {
-                      inputValue = valList[index];
+                      value = valList[index];
                       Navigator.of(context).pop();
                       showDialog(
+                        // Select the suit
                         context: context,
                         builder: (context) => Dialog(
                           child: GridView.count(
+                            // Grid of suits
                             crossAxisCount: 2,
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
@@ -77,12 +75,11 @@ class _CardSwapperState extends State<CardSwapper> {
                                 icon: Image.asset(
                                     'images/${suitMap[suitList[index]]}.png'),
                                 onPressed: () {
-                                  inputSuit = suitList[index];
+                                  suit = suitList[index];
                                   Navigator.of(context).pop();
                                   setState(() {
-                                    card.value = inputValue;
-                                    card.suit = inputSuit;
-                                    card.showBack = false;
+                                    card.inputCard(value, suit);
+                                    // If both cards are selected, go to next stage (1)
                                     if (card1.suit != Suit.joker &&
                                         card2.suit != Suit.joker) {
                                       _stage = 1;
@@ -103,7 +100,7 @@ class _CardSwapperState extends State<CardSwapper> {
 
   Widget renderStageWidget() {
     Widget W = const Center(
-      //Default error message
+      // Default error message
       child: Text(
         'Card Swapper Error',
         style: TextStyle(color: Colors.red, fontSize: 35),
@@ -111,7 +108,7 @@ class _CardSwapperState extends State<CardSwapper> {
     );
 
     switch (_stage) {
-      case 0:
+      case 0: // Input the cards to be swapped
         W = GestureDetector(
           onLongPress: () {
             enterCard(card1);
@@ -122,7 +119,7 @@ class _CardSwapperState extends State<CardSwapper> {
           ),
         );
         break;
-      case 1:
+      case 1: // Showback and generate random cards on tap
         W = Center(
             child: GestureDetector(
           onTap: () {
@@ -132,11 +129,9 @@ class _CardSwapperState extends State<CardSwapper> {
           },
           onVerticalDragUpdate: (dragDetails) {
             if (dragDetails.primaryDelta! > 0) {
-              //on swipe down
+              // On swipe down, go to next stage (2)
               setState(() {
-                _displayCard.suit = card1.suit;
-                _displayCard.value = card1.value;
-                _displayCard.showBack = false;
+                _displayCard.inputCard(card1.value, card1.suit);
                 _stage = 2;
               });
             }
@@ -145,7 +140,7 @@ class _CardSwapperState extends State<CardSwapper> {
               _displayCard.suit, _displayCard.value, _displayCard.showBack),
         ));
         break;
-      case 2:
+      case 2: // Swap the cards with slide followed by shake
         W = Center(
           child: Stack(children: [
             AnimatedPositioned(
@@ -153,17 +148,19 @@ class _CardSwapperState extends State<CardSwapper> {
               top: _top,
               left: 30,
               onEnd: () {
+                // Wait for phone shake after swipe up animation
                 detector.startListening();
               },
               child: GestureDetector(
                 onTap: () {
+                  // On tap, go to previous stage (1)
                   setState(() {
                     _displayCard.generateRandomCard();
                     _stage = 1;
                   });
                 },
                 onVerticalDragUpdate: (dragDetails) {
-                  //on swip up
+                  // On swipe up, slide card upwards, out of the screen
                   int sensitivity = -10;
                   if (dragDetails.primaryDelta! < sensitivity) {
                     setState(() {
@@ -177,12 +174,11 @@ class _CardSwapperState extends State<CardSwapper> {
             ),
           ]),
         );
-      case 3:
+      case 3: // Display swapped card and remove it on right drag
         detector.stopListening();
         setState(() {
-          _displayCard.suit = card2.suit;
-          _displayCard.value = card2.value;
-          _displayCard.showBack = false;
+          // Show swapped card
+          _displayCard.inputCard(card2.value, card2.suit);
         });
         W = Center(
           child: Draggable(
@@ -191,6 +187,7 @@ class _CardSwapperState extends State<CardSwapper> {
             childWhenDragging: Container(),
             onDraggableCanceled: (velocity, offset) {
               if (offset.dx > 200) {
+                // Go to initial stage on right drag
                 setState(() {
                   _stage = 0;
                 });

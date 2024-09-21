@@ -11,6 +11,12 @@ class MagicCard {
     value = valList[Random().nextInt(13)];
     showBack = false;
   }
+
+  void inputCard(CardValue inputValue, Suit inputSuit) {
+    value = inputValue;
+    suit = inputSuit;
+    showBack = false;
+  }
 }
 
 final Map<CardValue, String> valueMap = {
