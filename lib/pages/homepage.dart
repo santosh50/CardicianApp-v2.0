@@ -44,6 +44,22 @@ class HomePage extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
+                  Navigator.pushNamed(context, '/generate');
+                },
+                style: const ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.red),
+                    padding: WidgetStatePropertyAll(
+                        EdgeInsets.symmetric(vertical: 30))),
+                child: const Text(
+                  'Card Generator',
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
                   Navigator.pushNamed(context, '/reveal');
                 },
                 style: const ButtonStyle(
