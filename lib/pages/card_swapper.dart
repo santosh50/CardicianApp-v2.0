@@ -99,6 +99,7 @@ class _CardSwapperState extends State<CardSwapper> {
     );
   }
 
+  // Render the widget depending upon card trick stage
   Widget renderStageWidget() {
     Widget W = const Center(
       // Default error message
