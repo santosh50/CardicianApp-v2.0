@@ -4,7 +4,6 @@ import 'package:shake_detector/shake_detector.dart';
 
 import 'package:cardician_app_v2/card_class.dart';
 import 'package:cardician_app_v2/custom_playing_card.dart';
-import "dart:math";
 
 class CardSwapper extends StatefulWidget {
   const CardSwapper({super.key});
@@ -33,13 +32,13 @@ class _CardSwapperState extends State<CardSwapper> {
     });
   }
 
-  void generateRandomCard() {
-    setState(() {
-      _displayCard.suit = suitList[Random().nextInt(4)];
-      _displayCard.value = valList[Random().nextInt(13)];
-      _displayCard.showBack = false;
-    });
-  }
+  // void generateRandomCard() {
+  //   setState(() {
+  //     _displayCard.suit = suitList[Random().nextInt(4)];
+  //     _displayCard.value = valList[Random().nextInt(13)];
+  //     _displayCard.showBack = false;
+  //   });
+  // }
 
   void enterCard(MagicCard card) {
     CardValue inputValue = CardValue.joker_1;
@@ -127,7 +126,9 @@ class _CardSwapperState extends State<CardSwapper> {
         W = Center(
             child: GestureDetector(
           onTap: () {
-            generateRandomCard();
+            setState(() {
+              _displayCard.generateRandomCard();
+            });
           },
           onVerticalDragUpdate: (dragDetails) {
             if (dragDetails.primaryDelta! > 0) {
@@ -156,8 +157,8 @@ class _CardSwapperState extends State<CardSwapper> {
               },
               child: GestureDetector(
                 onTap: () {
-                  generateRandomCard();
                   setState(() {
+                    _displayCard.generateRandomCard();
                     _stage = 1;
                   });
                 },

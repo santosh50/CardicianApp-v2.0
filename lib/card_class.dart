@@ -1,9 +1,16 @@
 import 'package:playing_cards/playing_cards.dart';
+import "dart:math";
 
 class MagicCard {
   Suit suit = Suit.joker;
   CardValue value = CardValue.joker_1;
   bool showBack = true;
+
+  void generateRandomCard() {
+    suit = suitList[Random().nextInt(4)];
+    value = valList[Random().nextInt(13)];
+    showBack = false;
+  }
 }
 
 final Map<CardValue, String> valueMap = {
