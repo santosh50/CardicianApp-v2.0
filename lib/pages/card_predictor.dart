@@ -12,6 +12,7 @@ class CardPredictor extends StatefulWidget {
 
 class _CardPredictorState extends State<CardPredictor> {
   late List<MagicCard> cardList; // List of 4 input cards
+  bool isTitleShown = true;
 
   @override
   void initState() {
@@ -89,12 +90,27 @@ class _CardPredictorState extends State<CardPredictor> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        title: const Text(
-          'Predict Hidden Card',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 22,
-          ),
+        title: GestureDetector(
+          onDoubleTap: () {
+            setState(() {
+              isTitleShown = !isTitleShown;
+            });
+          },
+          child: isTitleShown
+              ? const Text(
+                  'Predict Hidden Card',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                  ),
+                )
+              : const Text(
+                  'Fitch Cheney\'s 5 card trick',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 19,
+                  ),
+                ),
         ),
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
