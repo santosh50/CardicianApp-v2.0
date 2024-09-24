@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
                     padding: WidgetStatePropertyAll(
                         EdgeInsets.symmetric(vertical: 30))),
                 child: const Text(
-                  'Card Generator',
+                  'Generator Genie',
                   style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
                     padding: WidgetStatePropertyAll(
                         EdgeInsets.symmetric(vertical: 30))),
                 child: const Text(
-                  'Card Revealer',
+                  'Screen Scratcher',
                   style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -84,7 +84,7 @@ class HomePage extends StatelessWidget {
                       EdgeInsets.symmetric(vertical: 30)),
                 ),
                 child: const Text(
-                  'Card Swapper',
+                  'Swift Swapper',
                   style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -100,7 +100,7 @@ class HomePage extends StatelessWidget {
                     padding: WidgetStatePropertyAll(
                         EdgeInsets.symmetric(vertical: 30))),
                 child: const Text(
-                  'Card Predictor',
+                  'Penta Predictor',
                   style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
