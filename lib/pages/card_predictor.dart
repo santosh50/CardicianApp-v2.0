@@ -12,7 +12,7 @@ class CardPredictor extends StatefulWidget {
 
 class _CardPredictorState extends State<CardPredictor> {
   late List<MagicCard> cardList; // List of 4 input cards
-  bool isTitleShown = true;
+  bool isTitleShown = true; // Title toggle
 
   @override
   void initState() {

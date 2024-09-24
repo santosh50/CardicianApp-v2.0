@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
                 child: const Text(
                   'Generator Genie',
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 28,
                     color: Colors.white,
                   ),
                 ),
@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
                 child: const Text(
                   'Screen Scratcher',
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 28,
                     color: Colors.white,
                   ),
                 ),
@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
                 child: const Text(
                   'Swift Swapper',
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 28,
                     color: Colors.white,
                   ),
                 ),
@@ -103,7 +103,7 @@ class HomePage extends StatelessWidget {
                 child: const Text(
                   'Penta Predictor',
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 28,
                     color: Colors.white,
                   ),
                 ),
