@@ -26,9 +26,10 @@ class HomePage extends StatelessWidget {
         child: Center(
           child: AnimatedTextKit(
             animatedTexts: [
-              WavyAnimatedText(
+              TypewriterAnimatedText(
                 'Made by Santosh',
                 textStyle: const TextStyle(fontSize: 25),
+                speed: const Duration(milliseconds: 180),
               ),
             ],
             isRepeatingAnimation: true,
